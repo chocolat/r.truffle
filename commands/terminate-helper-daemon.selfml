@@ -1,0 +1,30 @@
+(trigger)
+
+(name [Terminate Helper Daemon])
+
+(only-in [source.r, source.rd.console])
+
+(input nothing)
+
+(output tooltip)
+
+(save nothing)
+
+(script [RPID=$(ps aw | grep '[0-9] /.*TMRHelperDaemon' | awk '{print $1}' )
+if [ ! -z $RPID ]; then
+	out=$(kill $RPID)
+	if [ -z "$out" ]; then
+		rm -f /tmp/textmate_Rhelper_console
+		rm -f /tmp/textmate_Rhelper_data.html
+		rm -f /tmp/textmate_Rhelper_head.html
+		rm -f /tmp/textmate_Rhelper_in
+		rm -f /tmp/textmate_Rhelper_out
+		rm -f /tmp/textmate_Rhelper_search.html
+		rm -f /tmp/textmate_Rhelper_status
+		echo "Helper Daemon was terminated."
+	else
+		echo "Error while terminating Helper Daemon running as PID $RPID."
+	fi
+else
+	echo "No Helper Daemon found."
+fi])

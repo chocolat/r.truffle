@@ -1,0 +1,13 @@
+(trigger)
+
+(name [Show File Header])
+
+(only-in [source.r, source.rd.console])
+
+(input selection nothing)
+
+(output tooltip)
+
+(save nothing)
+
+(script [head -n 3 "$TM_SELECTED_TEXT"])

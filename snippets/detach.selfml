@@ -1,0 +1,8 @@
+(name Detach)
+
+(trigger
+    (tab det))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [detach(%{0})])

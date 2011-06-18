@@ -1,0 +1,20 @@
+(name [read.csv (*.csv)])
+
+(only-in [source.r, source.rd.console])
+
+(output snippet)
+
+(file-extensions csv CSV)
+
+(save nothing)
+
+(script [
+if [ "${TM_SCOPE:0:17}" == "source.rd.console" ]; then
+	echo -n "read.csv(file = \"$TM_DROPPED_FILEPATH\", header = \${1:TRUE}, stringsAsFactors = \${2:FALSE})"
+else
+	if [ "$TM_MODIFIER_FLAGS" == "SHIFT" ]; then
+		echo "read.csv(file = \"$TM_DROPPED_FILEPATH\", header = \${1:TRUE}, stringsAsFactors = \${2:FALSE})"
+	else
+		echo "read.csv(file = \"$TM_DROPPED_FILE\", header = \${1:TRUE}, stringsAsFactors = \${2:FALSE})"
+	fi
+fi])

@@ -1,0 +1,8 @@
+(name Cummulative)
+
+(trigger
+    (tab cum))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [cum%{1="max"}(%{2="x"})])

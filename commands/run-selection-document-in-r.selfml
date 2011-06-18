@@ -1,0 +1,35 @@
+(trigger
+    (key [[cmd]R]))
+
+(name [Run Document / Selection in R])
+
+(only-in source.r)
+
+(input document document)
+
+(output html)
+
+(save nothing)
+
+(script [
+#only for Mac OSX 10.4 X11
+OS=$(uname -r | perl -pe 's/(\d+)\..*/$1/')
+[[ $OS -eq 8 ]] && export DISPLAY=:0.0
+
+CRAN="http://cran.cnr.berkeley.edu"
+SOFILE="$HOME/Library/Application Support/Rdaemon/startOptions.R"
+if [ -f "$SOFILE" ]; then
+	RES=$(cat "$SOFILE" | egrep 'options.*?repos.*?list' | perl -pe 's/^\s*options\s*.*?repos\s*=\s*.*?[\x{27}"](.*?)[\x{27}"].*/$1/g' | tail -n 1)
+	[[ ! -z "$RES" ]] && [[ "${RES:0:4}" == "http" ]] && CRAN="$RES"
+fi
+
+if [ ! -z "$TM_INPUT_START_LINE" ]; then
+	if [ `echo -en "$TM_SELECTED_TEXT" | egrep -cv '^[	 ]*#'` -gt 0 ]; then
+		echo -en "$TM_SELECTED_TEXT" | "$TM_BUNDLE_SUPPORT/tmR.rb" "$CRAN" 1
+	else
+		cat | "$TM_BUNDLE_SUPPORT/tmR.rb" "$CRAN" 0
+	fi
+else
+	cat | "$TM_BUNDLE_SUPPORT/tmR.rb" "$CRAN" 0
+fi
+])

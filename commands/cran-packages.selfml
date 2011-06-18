@@ -1,0 +1,19 @@
+(trigger)
+
+(name [CRAN Packages])
+
+(only-in source.r)
+
+(input nothing)
+
+(output tooltip)
+
+(save nothing)
+
+(script [CRAN="http://cran.cnr.berkeley.edu"
+SOFILE="$HOME/Library/Application Support/Rdaemon/startOptions.R"
+if [ -f "$SOFILE" ]; then
+	RES=$(cat "$SOFILE" | egrep 'options.*?repos.*?list' | perl -pe 's/^\s*options\s*.*?repos\s*=\s*.*?[\x{27}"](.*?)[\x{27}"].*/$1/g' | tail -n 1)
+	[[ ! -z "$RES" ]] && [[ "${RES:0:4}" == "http" ]] && CRAN="$RES"
+fi
+open "$CRAN/web/packages/"])

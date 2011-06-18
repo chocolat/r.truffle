@@ -1,0 +1,8 @@
+(name Ifelse)
+
+(trigger
+    (tab ife))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [ifelse(%{1="test"}, %{2="yes"}, %{3="no"})])

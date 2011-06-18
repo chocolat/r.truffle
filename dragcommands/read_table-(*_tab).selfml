@@ -1,0 +1,21 @@
+(name [read.table (*.tab)])
+
+(only-in [source.r, source.rd.console])
+
+(output snippet)
+
+(file-extensions tab TAB)
+
+(save nothing)
+
+(script [
+if [ "${TM_SCOPE:0:17}" == "source.rd.console" ]; then
+	echo -n "read.table(file = \"$TM_DROPPED_FILEPATH\", sep = \"\${1:\\t}\", header = \${2:TRUE}, stringsAsFactors = \${3:FALSE})"
+else
+	if [ "$TM_MODIFIER_FLAGS" == "SHIFT" ]; then
+		echo "read.table(file = \"$TM_DROPPED_FILEPATH\", sep = \"\${1:\\t}\", header = \${2:TRUE}, stringsAsFactors = \${3:FALSE})"
+	else
+		echo "read.table(file = \"$TM_DROPPED_FILE\", sep = \"\${1:\\t}\", header = \${2:TRUE}, stringsAsFactors = \${3:FALSE})"
+	fi
+fi
+exit_show_tool_tip])

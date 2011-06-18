@@ -1,0 +1,17 @@
+(menu command.run-selection-document-in-r
+    (submenu [Execute Selection/Document In R and] command.insert-result command.copy-result-into-pasteboard command.show-result-as-tooltip)
+    (submenu [Send Selection/Document to] command.rdaemon command.r_app)
+    (submenu [Send Selection/Line to] command.evaluate-selection-line-in-r_app-&-step)
+    ---
+    (submenu Documentation command.show-r-documentation command.cran-packages --- command.edit-user-defined-function-parameter --- command.terminate-helper-daemon)
+    (submenu Insert command.prefix-package-name-current-function command.package-name… ---)
+    (submenu Vector/Matrix [snippet.sequence-(from,to,by)] --- snippet.sort snippet.factor snippet.divide-into-intervals --- snippet.length snippet.cummulative snippet.density)
+    (submenu [Data Frame] snippet.attach snippet.detach)
+    (submenu Input/Output snippet.load-dataset --- snippet.read-from-file)
+    (submenu Graphs
+        (submenu Add-ons snippet.add-tick-marks snippet.polygonal-line))
+    (submenu [Language Features] command.load-library-using-"require" command.load-library-using-"library" snippet.file_choose snippet.for-loop snippet.ifelse snippet.function snippet.source snippet.na_omit --- command.“-<--”)
+    (submenu Auxiliaries command.show-file-header)
+    (submenu [Rd Documentation] command.rd-preview-as-html command.rd-insert-arguments-tag)
+    command.tidy
+    ---)

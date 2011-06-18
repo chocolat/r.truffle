@@ -1,0 +1,31 @@
+(trigger
+    (tab arg))
+
+(name [Rd Insert arguments tag])
+
+(only-in text.tex.latex.rd)
+
+(input document)
+
+(output snippet)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby -wKU
+
+rd=STDIN.read()
+if rd =~ /(?m).*?\\usage\{.*?\((.*?)\).*/m
+	rd.gsub!(/(?m).*?\\usage\{.*?\((.*?)\).*/m, '\1')
+	puts "\\arguments{"
+	counter=1
+	rd.scan(/([\w\._]+)\s*=/) do |arg|
+		puts "\t\\item{#{arg}}{${#{counter}:}}"
+		counter = counter+1
+	end
+	puts "}"
+else
+	puts "\\arguments{"
+		puts "\t\\item{${1:}}{${2:}}${0:}"
+	puts "}"
+end
+])

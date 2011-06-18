@@ -1,0 +1,8 @@
+(name Length)
+
+(trigger
+    (tab len))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [length(%{1="x"})])

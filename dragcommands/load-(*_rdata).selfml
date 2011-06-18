@@ -1,0 +1,20 @@
+(name [load (*.Rdata)])
+
+(only-in [source.r, source.rd.console])
+
+(output snippet)
+
+(file-extensions rdata Rdata rda Rda)
+
+(save nothing)
+
+(script [
+if [ "${TM_SCOPE:0:17}" == "source.rd.console" ]; then
+	echo -n "load(\"$TM_DROPPED_FILEPATH\")"
+else
+	if [ "$TM_MODIFIER_FLAGS" == "SHIFT" ]; then
+		echo "load(\"$TM_DROPPED_FILEPATH\")"
+	else
+		echo "load(\"$TM_DROPPED_FILE\")"
+	fi
+fi])

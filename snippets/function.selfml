@@ -1,0 +1,8 @@
+(name Function)
+
+(trigger
+    (tab fun))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [function(%{1="x"}) %{3="{%{0}\\"}}])

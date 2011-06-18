@@ -1,0 +1,19 @@
+(trigger
+    (key [[ctrl]-]))
+
+(name [“ <- ”])
+
+(only-in [source.r, source.rd.console])
+
+(input nothing)
+
+(output after-selected)
+
+(save nothing)
+
+(script [FLAG=$(echo -en "$TM_CURRENT_LINE" | perl -e '$_=<>;m/.*?( $)/;print 1 if defined($1)')
+if [ -z "$FLAG" ]; then
+	echo -n " <- "
+else
+	echo -n "<- "
+fi])

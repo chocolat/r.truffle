@@ -1,0 +1,8 @@
+(name [Load Dataset])
+
+(trigger
+    (tab dat))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [data(%{1="name"})])

@@ -1,0 +1,27 @@
+(trigger
+    (key [[alt][shift][cmd]R]))
+
+(name R.app)
+
+(only-in source.r)
+
+(input selection)
+
+(output tooltip)
+
+(save nothing)
+
+(script [# input is selection or document
+rawText="`cat`"
+
+curDir=''
+if [[ ${#TM_DIRECTORY} -gt 0 ]]; then
+	curDir="$TM_DIRECTORY"
+fi
+
+osascript -e 'on run(theCode)' \
+		  -e 'tell application "R" to activate' \
+		  -e 'if (item 2 of theCode) is not "" then tell application "R" to cmd "setwd('\''" & (item 2 of theCode) & "'\'')"' \
+		  -e 'tell application "R" to cmd (item 1 of theCode)' \
+		  -e 'end run' -- "$rawText" "$curDir"
+])

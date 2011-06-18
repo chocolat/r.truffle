@@ -1,0 +1,8 @@
+(name Attach)
+
+(trigger
+    (tab att))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [attach(%{1="frame"})])

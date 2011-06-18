@@ -1,0 +1,8 @@
+(name [Read From File])
+
+(trigger
+    (tab rea))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [read.table("%{1="filename"}"%{2=", header = %{3=\"TRUE\"},  sep = \"%{4=\"\\\\t\"}\",  stringsAsFactors = %{5=\"FALSE\"}"})])

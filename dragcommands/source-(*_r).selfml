@@ -1,0 +1,20 @@
+(name [source (*.R)])
+
+(only-in [source.r, source.rd.console])
+
+(output snippet)
+
+(file-extensions r R)
+
+(save nothing)
+
+(script [
+if [ "${TM_SCOPE:0:17}" == "source.rd.console" ]; then
+	echo -n "source(\"$TM_DROPPED_FILEPATH\", chdir = \${1:TRUE})"
+else
+	if [ "$TM_MODIFIER_FLAGS" == "SHIFT" ]; then
+		echo "source(\"$TM_DROPPED_FILEPATH\", chdir = \${1:TRUE})"
+	else
+		echo "source(\"$TM_DROPPED_FILE\", chdir = \${1:TRUE})"
+	fi
+fi])

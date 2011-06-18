@@ -1,0 +1,8 @@
+(name file.choose)
+
+(trigger
+    (tab fch))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [%{1="file = "}file.choose()%{0}])

@@ -1,0 +1,8 @@
+(name Factor)
+
+(trigger
+    (tab fac))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [factor(%{1="x"})])

@@ -1,0 +1,20 @@
+(trigger
+    (key [[ctrl][cmd]R]))
+
+(name [Insert Result])
+
+(only-in source.r)
+
+(input selection)
+
+(output after-selected)
+
+(save nothing)
+
+(script [if [ -z "$TM_SELECTED_TEXT" ]; then
+	echo
+	cat | R --vanilla --slave --no-readline --encoding=UTF-8
+else
+	cat | R --vanilla --slave --no-readline --encoding=UTF-8
+	exit_replace_text
+fi])

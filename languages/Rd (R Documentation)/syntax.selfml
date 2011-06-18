@@ -1,0 +1,44 @@
+(root text.tex.latex.rd
+    (zone meta.section.rd
+        (start
+            (regex [((\\)(?:alias|docType|keyword|name|title|description|value|note|concept|keyword|details|format|references|source|arguments|seealso|author))(\{)]
+                (3 punctuation.definition.arguments.begin.rd)
+                (1 keyword.other.section.rd)
+                (2 punctuation.definition.function.rd)))
+        (end
+            (regex [(\})]
+                (1 punctuation.definition.arguments.end.rd)))
+        (subzones
+            (include $self)))
+    (zone meta.usage.rd
+        (start
+            (regex [((\\)(?:usage))(\{)(?:\n)?]
+                (3 punctuation.definition.arguments.begin.rd)
+                (1 keyword.other.usage.rd)
+                (2 punctuation.definition.function.rd)))
+        (end
+            (regex [(\})]
+                (1 punctuation.definition.arguments.end.rd)))
+        (subzones
+            (include source.r)))
+    (zone meta.examples.rd
+        (start
+            (regex [((\\)(?:examples))(\{)(?:\n)?]
+                (3 punctuation.definition.arguments.begin.rd)
+                (1 keyword.other.examples.rd)
+                (2 punctuation.definition.function.rd)))
+        (end
+            (regex [(^\}$)]
+                (1 punctuation.definition.arguments.end.rd)))
+        (subzones
+            (include source.r)))
+    (zone meta.author.rd
+        (start
+            (regex [((\\)(?:author))(\{)(?:\n)?]
+                (3 punctuation.definition.arguments.begin.rd)
+                (1 keyword.other.author.rd)
+                (2 punctuation.definition.function.rd)))
+        (end
+            (regex [(\})]
+                (1 punctuation.definition.arguments.end.rd))))
+    (include text.tex.latex))

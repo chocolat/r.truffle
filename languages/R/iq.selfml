@@ -1,0 +1,23 @@
+(detector
+    (extension R)
+    (extension r)
+    (extension s)
+    (extension S)
+    (extension Rprofile))
+
+(folding
+    (start [^[^#]*(\([^\)]*$|\{\s*$)])
+    (stop [(^\s*\)|^\s*\})]))
+
+(shell-variables
+    (TM_COMMENT_START [# ]))
+
+(comment.line [# ])
+
+(in meta.method.declaration.r
+    (symbol-list
+        (transformation [s/\s*(.+?)\s*\(\s*("|\x27)(.*?)\s*\2/$1 "$3"/;])))
+
+(in keyword.other.section.rd
+    (symbol-list
+        (transformation [s/\\(.*)/$1/;])))

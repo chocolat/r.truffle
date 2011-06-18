@@ -1,0 +1,14 @@
+(trigger
+    (key [[ctrl][cmd]R]))
+
+(name [Copy Result into Pasteboard])
+
+(only-in source.r)
+
+(input selection)
+
+(output tooltip)
+
+(save nothing)
+
+(script [cat | R --vanilla --slave --no-readline --encoding=UTF-8 | pbcopy])

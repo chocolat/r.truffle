@@ -1,0 +1,8 @@
+(name Source)
+
+(trigger
+    (tab sou))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [source(%{1="\"%{2}\""}%{3=", chdir = %{4=\"TRUE\"}"})])

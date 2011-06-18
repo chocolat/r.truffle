@@ -1,0 +1,8 @@
+(name Sort)
+
+(trigger
+    (tab sor))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [sort(%{1="x"})])

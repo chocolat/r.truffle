@@ -1,0 +1,8 @@
+(name na.omit)
+
+(trigger
+    (tab nao))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [na.omit(%{0})])

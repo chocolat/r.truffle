@@ -1,0 +1,87 @@
+(root source.r
+    (zone comment.line.number-sign.r
+        (match
+            (regex [(#).*$\n?]
+                (1 punctuation.definition.comment.r))))
+    (zone storage.type.r
+        (match
+            (regex [\b(logical|numeric|character|complex|matrix|array|data\.frame|list|factor)(?=\s*\()])))
+    (zone keyword.control.r
+        (match
+            (list function if break next repeat else for return switch while in invisible)
+            (boundary.both)))
+    (zone constant.numeric.r
+        (match
+            (regex [\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(i|L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b])))
+    (zone constant.language.r
+        (match
+            (list T F TRUE FALSE NULL NA Inf NaN)
+            (boundary.both)))
+    (zone support.constant.misc.r
+        (match
+            (regex [\b(pi|letters|LETTERS|month\.abb|month\.name)\b])))
+    (zone keyword.operator.arithmetic.r
+        (match
+            (regex [(\-|\+|\*|\/|%\/%|%%|%\*%|%in%|%o%|%x%|\^)])))
+    (zone keyword.operator.assignment.r
+        (match
+            (list = <- <<- -> ->>)))
+    (zone keyword.operator.comparison.r
+        (match
+            (list == != <> < > <= >=)))
+    (zone keyword.operator.logical.r
+        (match
+            (regex [(!|&{1,2}|[|]{1,2})])))
+    (zone keyword.other.r
+        (match
+            (regex [(\.\.\.|\$|@|:|\~)])))
+    (zone string.quoted.double.r
+        (start
+            (regex "
+                (0 punctuation.definition.string.begin.r)))
+        (end
+            (regex "
+                (0 punctuation.definition.string.end.r)))
+        (subzones
+            (zone constant.character.escape.r
+                (match
+                    (regex \\.)))))
+    (zone string.quoted.single.r
+        (start
+            (regex '
+                (0 punctuation.definition.string.begin.r)))
+        (end
+            (regex '
+                (0 punctuation.definition.string.end.r)))
+        (subzones
+            (zone constant.character.escape.r
+                (match
+                    (regex \\.)))))
+    (zone meta.function.r
+        (match
+            (regex [([[:alpha:].][[:alnum:]._]*)\s*(<-)\s*(function)]
+                (3 keyword.control.r)
+                (1 entity.name.function.r)
+                (2 keyword.operator.assignment.r))))
+    (zone meta.method.declaration.r
+        (match
+            (regex `(setMethod|setGeneric|setGroupGeneric|setClass)\s*\(\s*("|\x{27})([a-zA-Z._\[\$@][a-zA-Z0-9._\[]*?)\2`
+                (3 entity.name.type.r)
+                (1 entity.name.tag.r))))
+    (zone
+        (match
+            (regex [([[:alpha:].][[:alnum:]._]*)\s*\(])))
+    (zone
+        (match
+            (regex [([[:alpha:].][[:alnum:]._]*)\s*(=)(?=[^=])]
+                (1 variable.parameter.r)
+                (2 keyword.operator.assignment.r))))
+    (zone invalid.illegal.variable.other.r
+        (match
+            (regex [\b([\d_][[:alnum:]._]+)\b])))
+    (zone entity.name.type.namespace.r
+        (match
+            (regex [\b([[:alnum:]_]+)(?=::)])))
+    (zone variable.other.r
+        (match
+            (regex [\b([[:alnum:]._]+)\b]))))

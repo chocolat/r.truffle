@@ -1,0 +1,8 @@
+(name Density)
+
+(trigger
+    (tab den))
+
+(only-in [source.r, source.rd.console])
+
+(snippet [density(%{1="x"}%{2=", bw = %{3=\"bandwidth\"}"})])

@@ -1,0 +1,14 @@
+(trigger
+    (key [[ctrl][alt][shift]L]))
+
+(name [Prefix Package Name to current Function])
+
+(only-in [source.r, source.rd.console])
+
+(input selection line)
+
+(output snippet)
+
+(save nothing)
+
+(script "$TM_BUNDLE_SUPPORT"/bin/prefix_package_name.sh)

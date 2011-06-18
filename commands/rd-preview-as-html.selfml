@@ -1,0 +1,14 @@
+(trigger
+    (key [[ctrl][alt][cmd]P]))
+
+(name [Rd Preview as HTML])
+
+(only-in text.tex.latex.rd)
+
+(input nothing)
+
+(output html)
+
+(save file)
+
+(script [R CMD Rdconv -t html "$TM_FILEPATH"])
