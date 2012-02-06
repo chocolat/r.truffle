@@ -5,4 +5,4 @@
 
 (only-in [source.r, source.rd.console])
 
-(snippet [rug(%{1="jitter(%{2=\"x\"})"})])
+(snippet [rug(%{1="jitter(%{2="x"})"})])

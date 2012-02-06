@@ -5,4 +5,4 @@
 
 (only-in [source.r, source.rd.console])
 
-(snippet [lines(%{1="x"}%{2=", color=%{3=\"red\"}"})])
+(snippet [lines(%{1="x"}%{2=", color=%{3="red"}"})])
